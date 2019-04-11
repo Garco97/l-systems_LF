@@ -17,10 +17,10 @@ class Main_GUI:
 			self.rules[variable]=rule
 			self.variables_entry.delete(0, len(variable))
 			self.rules_entry.delete(0,len(rule))
-		text = Label(self.mycanvas, text=variable+":"+rule, fg="white", bg="black")
-		text.pack(side=LEFT)
-		text.place(relx=0.9, rely=self.rule_counter)
-		self.rule_counter += 0.03
+			text = Label(self.mycanvas, text=variable+":"+rule, fg="white", bg="black")
+			text.pack(side=LEFT)
+			text.place(relx=0.9, rely=self.rule_counter)
+			self.rule_counter += 0.03
 
 
 	# def paint(self,event):
