@@ -5,7 +5,6 @@ class Main_GUI:
 	def __init__(self):
 		self.rules = {}
 		self.rule_counter = 0.1
-		self.actual_lsystem = lsystem(set([]),{}, None, None)
 		self.create_GUI()
 		
 	def save_rule(self):
@@ -27,13 +26,14 @@ class Main_GUI:
 		'''
 		 Se encarga de guardar el lsystem creado para poder representarlo despues
 		'''
-		if self.actual_lsystem.get_actual_state() == self.actual_lsystem.initial_state:
-			self.actual_lsystem  = lsystem(self.constants_entry.get(), self.rules, self.initial_state_entry.get(),
-		 							   self.iterations_entry.get())
-			print(str(self.actual_lsystem))
-		self.actual_lsystem.calculate()
-		print(self.actual_lsystem.get_actual_state())
-		self.mycanvas.paint_lsystem(self.actual_lsystem)
+		self.mycanvas.delete("all")
+		actual_lsystem  = lsystem(self.constants_entry.get(), self.rules, self.initial_state_entry.get(),
+		 							   self.iterations_entry.get(),90)
+		#print(str(actual_lsystem))
+		for iteration in range(0,int(actual_lsystem.iterations)):
+			actual_lsystem.calculate()
+		#print(actual_lsystem.get_actual_state())
+		self.mycanvas.paint_lsystem(actual_lsystem,event)
 
 	def create_GUI(self):
 		self.root = Tk()
