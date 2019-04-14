@@ -1,5 +1,5 @@
 class lsystem():
-	def __init__(self, constants, rules, initial_state, iterations, angle):
+	def __init__(self, constants, rules, initial_state, iterations, angle, line_size):
 		self.constants = constants
 		self.rules = rules
 		self.variables = set([])
@@ -7,7 +7,8 @@ class lsystem():
 		self.iterations = iterations
 		self.actual_state = initial_state
 		self.angle = angle % 360
-		self.actual_angle = self.angle
+		self.actual_angle = 180
+		self.line_size = line_size
 		self.take_variables()
 
 	def take_variables(self):
@@ -15,14 +16,9 @@ class lsystem():
 			self.variables.add(i)
 
 	def add_angle(self, angle):
-		self.angle += angle
-		self.angle = self.angle % 360
+		self.actual_angle += angle
+		self.actual_angle = self.actual_angle % 360
 
-	def turn_left(self, angle):
-		self.add_angle(-angle)
-
-	def turn_right(self, angle):
-		self.add_angle(angle)
 
 	def __str__(self):
 		res = "El lsystem tiene las siguientes constantes\n"
