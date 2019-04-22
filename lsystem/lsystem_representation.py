@@ -8,6 +8,7 @@ class lsystem():
 		self.angle = angle % 360
 		self.actual_angle = 180
 		self.line_size = line_size
+		self.stack = []
 		self.take_variables()
 
 	def take_variables(self):

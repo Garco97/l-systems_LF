@@ -37,6 +37,9 @@ class ResizingCanvas(Canvas):
                 lsystem.add_angle(lsystem.angle)
             elif letter == "-":
                 lsystem.add_angle(-lsystem.angle)
-
+            elif letter == "[":
+                lsystem.stack.append([initial_point,lsystem.actual_angle])
+            elif letter == "]":
+                initial_point, lsystem.actual_angle = lsystem.stack.pop()
 
 
