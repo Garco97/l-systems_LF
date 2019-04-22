@@ -1,0 +1,9 @@
+{
+	"axiom": "X",
+	"iters": 7,
+	"angle": 90,
+	"rules": { 
+		"X": "-YF+XFX+FY-",
+		"Y": "+XF-YFY-FX+"
+	}
+}

@@ -33,11 +33,10 @@ class ResizingCanvas(Canvas):
                 destination_point = [initial_point[0] + lsystem.line_size * math.cos(angle_rad) , initial_point[1] + lsystem.line_size * math.sin(angle_rad)]
                 self.create_line(initial_point[0],initial_point[1],destination_point[0],destination_point[1],width=2)
                 initial_point = destination_point
-            if letter in lsystem.constants:
-                if letter == "+":
-                    lsystem.add_angle(lsystem.angle)
-                elif letter == "-":
-                    lsystem.add_angle(-lsystem.angle)
+            if letter == "+":
+                lsystem.add_angle(lsystem.angle)
+            elif letter == "-":
+                lsystem.add_angle(-lsystem.angle)
 
 
 

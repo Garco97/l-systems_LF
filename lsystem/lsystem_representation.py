@@ -1,6 +1,5 @@
 class lsystem():
-	def __init__(self, constants, rules, initial_state, iterations, angle, line_size):
-		self.constants = constants
+	def __init__(self, rules, initial_state, iterations, angle, line_size):
 		self.rules = rules
 		self.variables = set([])
 		self.initial_state = initial_state
@@ -21,9 +20,7 @@ class lsystem():
 
 
 	def __str__(self):
-		res = "El lsystem tiene las siguientes constantes\n"
-		res += str(self.constants) +"\n"
-		res += "Las siguientes reglas:\n"
+		res = "El lsystem tiene las siguientes reglas\n"
 		res += str(self.rules) +"\n"
 		return res
 

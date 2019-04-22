@@ -1,0 +1,8 @@
+{
+	"iters": 6,
+	"angle": 90,
+	"axiom": "F",
+	"rules": {
+		"F": "F+F-F-F+F"
+	}
+}
