@@ -24,7 +24,6 @@ class Main_GUI:
 			text.place(relx=0.85, rely=self.rule_counter)
 			self.rule_counter += 0.03
 
-
 	def calculate(self,event):
 		'''
 		 Se encarga de guardar el lsystem creado para poder representarlo despues
@@ -37,27 +36,33 @@ class Main_GUI:
 		self.mycanvas.paint_lsystem(actual_lsystem,event)
 
 	def lsystem_json(self):
+		'''
+		Carga el fichero JSON desde un filechooser
+		'''
 		self.rules = {}
 		self.rule_counter = 0.1
 		self.root.filename =  filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("json files","*.json"),("all files","*.*")))
-		lsystem = get_lsystem(self.root.filename)
-		for variable, rule in lsystem.rules.items():
-			text = Label(self.mycanvas, text=variable+":"+rule,bg="white")
-			text.pack(side=LEFT)
-			text.place(relx=0.85, rely=self.rule_counter)
-			self.rule_counter += 0.03
-		self.rules=lsystem.rules
+		if self.root.filename is not "": 
+			lsystem = get_lsystem(self.root.filename)
+			for variable, rule in lsystem.rules.items():
+				text = Label(self.mycanvas, text=variable+":"+rule,bg="white")
+				text.pack(side=LEFT)
+				text.place(relx=0.85, rely=self.rule_counter)
+				self.rule_counter += 0.03
+			self.rules=lsystem.rules
 
-		angle = StringVar()
-		iterations = StringVar()
-		initial = StringVar()
-		angle.set(lsystem.angle) 
-		iterations.set(lsystem.iterations)
-		initial.set(lsystem.initial_state)
-		self.refresh_GUI(angle, iterations, initial)
-
+			angle = StringVar()
+			iterations = StringVar()
+			initial = StringVar()
+			angle.set(lsystem.angle) 
+			iterations.set(lsystem.iterations)
+			initial.set(lsystem.initial_state)
+			self.refresh_GUI(angle, iterations, initial)
 
 	def refresh_GUI(self, angle, iterations, initial):
+		'''
+		Función que refresca los datos de la interfaz cuando cargas un fichero JSON
+		'''
 		self.angulo_entry = Entry(self.frame, textvariable=angle)
 		self.angulo_entry.pack(side=LEFT)
 		self.angulo_entry.place(relx=0.735, rely=0.3)
@@ -67,7 +72,11 @@ class Main_GUI:
 		self.initial_state_entry = Entry(self.frame, textvariable=initial)
 		self.initial_state_entry.pack(side=LEFT)
 		self.initial_state_entry.place(relx=0.13, rely=0.1)
+
 	def create_GUI(self):
+		'''
+		Crea toda la interfaz gráfica
+		'''
 		self.root = Tk()
 		self.root.geometry("1000x750")
 		self.frame = Frame(width=600, height=150)

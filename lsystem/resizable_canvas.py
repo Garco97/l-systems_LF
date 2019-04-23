@@ -13,14 +13,14 @@ class ResizingCanvas(Canvas):
 
 
     def on_resize(self,event):
-        # determine the ratio of old width/height to new width/height
+    	'''
+    	Reescala el canvas cuando la pantalla se hace más grande o más pequeña
+    	'''
         wscale = float(event.width)/self.width
         hscale = float(event.height)/self.height 
         self.width = event.width
         self.height = event.height
-        # resize the canvas 
         self.config(width=self.width, height=self.height)
-        # rescale all the objects tagged with the "all" tag
 
     def paint_lsystem(self, lsystem, event):
         '''
