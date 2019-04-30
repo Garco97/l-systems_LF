@@ -1,12 +1,12 @@
 class lsystem():
-	def __init__(self, rules, initial_state, iterations, angle, line_size):
+	def __init__(self, rules, initial_state, iterations, angle, line_size, starting_angle):
 		self.rules = rules
 		self.variables = set([])
 		self.initial_state = initial_state
 		self.iterations = iterations
 		self.actual_state = initial_state
 		self.angle = angle % 360
-		self.actual_angle = 270
+		self.actual_angle = starting_angle
 		self.line_size = line_size
 		self.stack = []
 		self.take_variables()

@@ -4,6 +4,7 @@
 	"angle": 90,
 	"rules": { 
 		"F": "F+FF-FF-F-F+F+FF-F-F+F+FF+FF-F"
-	}
+	},
+	"starting_angle":90
 }
 

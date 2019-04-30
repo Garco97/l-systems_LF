@@ -4,5 +4,6 @@
 	"axiom": "F",
 	"rules": {
 		"F": "FF-[-F+F+F]+[+F-F-F]"
-	}
+	},
+	"starting_angle":270
 }

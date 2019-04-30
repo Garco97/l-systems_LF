@@ -30,7 +30,7 @@ class Main_GUI:
 		'''
 		self.mycanvas.delete("all")
 		actual_lsystem  = lsystem(self.rules, self.initial_state_entry.get(),
-									   self.iterations_entry.get(),float(self.angulo_entry.get()),int(self.line_size_entry.get()))
+									   self.iterations_entry.get(),float(self.angulo_entry.get()),int(self.line_size_entry.get()),self.actual_angle)
 		for iteration in range(0,int(actual_lsystem.iterations)):
 			actual_lsystem.calculate()
 		self.mycanvas.paint_lsystem(actual_lsystem,event)
@@ -50,7 +50,7 @@ class Main_GUI:
 				text.place(relx=0.85, rely=self.rule_counter)
 				self.rule_counter += 0.03
 			self.rules=lsystem.rules
-
+			self.actual_angle = lsystem.actual_angle
 			angle = StringVar()
 			iterations = StringVar()
 			initial = StringVar()

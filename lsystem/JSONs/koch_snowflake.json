@@ -4,5 +4,6 @@
 	"angle": 60,
 	"rules": { 
 		"F": "F+F--F+F"
-	}
+	},
+	"starting_angle":90
 }
