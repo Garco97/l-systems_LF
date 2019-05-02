@@ -7,6 +7,7 @@ class Main_GUI:
 	def __init__(self):
 		self.rules = {}
 		self.rule_counter = 0.1
+		self.actual_angle = 90
 		self.create_GUI()
 		
 	def save_rule(self):
@@ -29,6 +30,7 @@ class Main_GUI:
 		 Se encarga de guardar el lsystem creado para poder representarlo despues
 		'''
 		self.mycanvas.delete("all")
+		self.actual_angle = int(self.popupMenuVar.get())
 		actual_lsystem  = lsystem(self.rules, self.initial_state_entry.get(),
 									   self.iterations_entry.get(),float(self.angulo_entry.get()),int(self.line_size_entry.get()),self.actual_angle)
 		for iteration in range(0,int(actual_lsystem.iterations)):
@@ -84,6 +86,14 @@ class Main_GUI:
 		self.button_load_JSON = Button(self.root,text="Cargar JSON", command = self.lsystem_json)
 		self.button_load_JSON.pack(side=LEFT)
 		self.button_load_JSON.place(relx=0.1, rely=0.05)
+		self.popupMenuVar = StringVar(self.root)
+		choices = { '0','90','180','270'}
+		self.popupMenuVar.set('0') 
+		self.popupMenu = OptionMenu(self.root, self.popupMenuVar, *choices)
+		self.popupMenu.place(relx=0.1, rely=0.08)
+		self.popUpMenu_lbl = Label(self.root, text="Orientación")
+		self.popUpMenu_lbl.pack(side=LEFT)
+		self.popUpMenu_lbl.place(relx=0.04, rely=0.08)
 		self.mycanvas = ResizingCanvas(self.root,width=200, height=400)
 		self.mycanvas.pack(side=BOTTOM, expand=False)
 		self.mycanvas.configure(background='white')
