@@ -3,8 +3,14 @@
 	"iters": 7,
 	"angle": 90,
 	"rules": { 
-		"X": "-YF+XFX+FY-",
-		"Y": "+XF-YFY-FX+"
+			"X": {
+				"rule": "-YF+XFX+FY-",
+				"forward": 1
+			},
+			"Y": {
+				"rule": "+XF-YFY-FX+",
+				"forward": 1
+			}	
 	},
 	"starting_angle":90
 }

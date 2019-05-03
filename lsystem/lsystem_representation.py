@@ -8,14 +8,20 @@ class lsystem():
 		self.angle = angle % 360
 		self.actual_angle = starting_angle
 		self.line_size = line_size
+		self.forward_variables = set([])
 		self.stack = []
 		self.take_variables()
+		self.take_forward_variables()
 
 	def __str__(self):
 		res = "El lsystem tiene las siguientes reglas\n"
 		res += str(self.rules) +"\n"
 		return res
 
+	def take_forward_variables(self):
+		for i,j in self.rules.items():
+			if j["forward"] == 1:
+				self.forward_variables.add(i)
 	def take_variables(self):
 		'''
 		Extrae las variables de las reglas
@@ -39,7 +45,7 @@ class lsystem():
 		for variable in self.actual_state:
 			for var, rule in self.rules.items():
 				if variable == var:
-					next_state += rule
+					next_state += rule["rule"]
 					found = True
 					break
 			if not found:

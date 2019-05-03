@@ -26,12 +26,16 @@ class ResizingCanvas(Canvas):
 		'''
 		Una vez calculadas las iteraciones, se representa el l-system
 		'''
+
 		initial_point = [event.x,event.y]
 		for letter in lsystem.get_actual_state():
 			angle_rad = lsystem.actual_angle * math.pi / 180
-			if letter in lsystem.variables:
+			if letter in lsystem.forward_variables:
 				destination_point = [initial_point[0] + lsystem.line_size * math.cos(angle_rad) , initial_point[1] + lsystem.line_size * math.sin(angle_rad)]
 				self.create_line(initial_point[0],initial_point[1],destination_point[0],destination_point[1],width=2)
+				initial_point = destination_point
+			elif letter in lsystem.variables:
+				destination_point = [initial_point[0] + lsystem.line_size * math.cos(angle_rad) , initial_point[1] + lsystem.line_size * math.sin(angle_rad)]
 				initial_point = destination_point
 			if letter == "+":
 				lsystem.add_angle(lsystem.angle)

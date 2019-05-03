@@ -3,7 +3,10 @@
 	"angle": 90,
 	"axiom": "F",
 	"rules": {
-		"F": "F+F-F-F+F"
+			"F": {
+				"rule": "F+F-F-F+F",
+				"forward": 1
+			}
 	},
 	"starting_angle":180
 }

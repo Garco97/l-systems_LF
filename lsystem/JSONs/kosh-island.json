@@ -3,7 +3,10 @@
 	"iters": 2,
 	"angle": 90,
 	"rules": { 
-		"F": "F+FF-FF-F-F+F+FF-F-F+F+FF+FF-F"
+			"F": {
+					"rule": "F+FF-FF-F-F+F+FF-F-F+F+FF+FF-F",
+					"forward": 1
+				}
 	},
 	"starting_angle":90
 }

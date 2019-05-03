@@ -1,15 +1,15 @@
 {
 	"iters": 4,
-	"angle": 60,
+	"angle": 90,
 	"axiom": "F",
 	"rules": {
 			"F": {
-				"rule": "F+G++G-F--FF-G+",
+				"rule": "F+F-F-F-G+F+F+F-F",
 				"forward": 1
 			},
-			"G":{ 
-				"rule": "-F+GG++G+F--F-G",
-				"forward": 1
+			"G": { 
+				"rule": "GGG",
+				"forward": 0
 			}
 	},
 	"starting_angle": 90

@@ -17,7 +17,7 @@ class Main_GUI:
 		variable = str(self.variables_entry.get())
 		rule = str(self.rules_entry.get())
 		if len(variable) == 1:
-			self.rules[variable]=rule
+			self.rules[variable]=[rule,self.check.get()]
 			self.variables_entry.delete(0, len(variable))
 			self.rules_entry.delete(0,len(rule))
 			text = Label(self.mycanvas, text=variable+":"+rule,bg="white")
@@ -46,11 +46,11 @@ class Main_GUI:
 		self.root.filename =  filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("json files","*.json"),("all files","*.*")))
 		if self.root.filename is not "": 
 			lsystem = get_lsystem(self.root.filename)
-			for variable, rule in lsystem.rules.items():
-				text = Label(self.mycanvas, text=variable+":"+rule,bg="white")
-				text.pack(side=LEFT)
-				text.place(relx=0.85, rely=self.rule_counter)
-				self.rule_counter += 0.03
+			# for variable, rule in lsystem.rules.items():
+			#  	text = Label(self.mycanvas, text=variable+":"+rule[rule],bg="white")
+			#  	text.pack(side=LEFT)
+			#  	text.place(relx=0.85, rely=self.rule_counter)
+			#  	self.rule_counter += 0.03
 			self.rules=lsystem.rules
 			self.actual_angle = lsystem.actual_angle
 			angle = StringVar()
@@ -94,6 +94,10 @@ class Main_GUI:
 		self.popUpMenu_lbl = Label(self.root, text="Orientación")
 		self.popUpMenu_lbl.pack(side=LEFT)
 		self.popUpMenu_lbl.place(relx=0.04, rely=0.08)
+		self.check = IntVar()
+		self.chechButton = Checkbutton(self.root, text="Avance", variable=self.check)
+		self.chechButton.pack(side=TOP)
+		self.chechButton.place(relx=0.49, rely=0.06)
 		self.mycanvas = ResizingCanvas(self.root,width=200, height=400)
 		self.mycanvas.pack(side=BOTTOM, expand=False)
 		self.mycanvas.configure(background='white')

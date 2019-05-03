@@ -3,8 +3,14 @@
 	"angle": 22.5,
 	"axiom": "X",
 	"rules": {
-		"X": "F-[[X]+X]+F[+FX]-X",
-		"F": "FF"
+		"X": {
+			"rule": "F-[[X]+X]+F[+FX]-X",
+			"forward": 1
+		},
+		"F": {
+			"rule": "FF",
+			"forward": 1
+		}
 	},
 	"starting_angle":270
 }
