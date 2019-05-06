@@ -10,7 +10,11 @@
 			"Y": {
 				"rule": "+XF-YFY-FX+",
 				"forward": 1
-			}	
+			}	,
+			"F":{
+				"rule":"F",
+				"forward":1
+			}
 	},
 	"starting_angle":90
 }

@@ -46,11 +46,11 @@ class Main_GUI:
 		self.root.filename =  filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("json files","*.json"),("all files","*.*")))
 		if self.root.filename is not "": 
 			lsystem = get_lsystem(self.root.filename)
-			# for variable, rule in lsystem.rules.items():
-			#  	text = Label(self.mycanvas, text=variable+":"+rule[rule],bg="white")
-			#  	text.pack(side=LEFT)
-			#  	text.place(relx=0.85, rely=self.rule_counter)
-			#  	self.rule_counter += 0.03
+			for variable, rule in lsystem.rules.items():
+			  	text = Label(self.mycanvas, text=variable+":"+rule["rule"],bg="white")
+			  	text.pack(side=LEFT)
+			  	text.place(relx=0.8, rely=self.rule_counter)
+			  	self.rule_counter += 0.03
 			self.rules=lsystem.rules
 			self.actual_angle = lsystem.actual_angle
 			angle = StringVar()
@@ -59,7 +59,7 @@ class Main_GUI:
 			angle.set(lsystem.angle) 
 			iterations.set(lsystem.iterations)
 			initial.set(lsystem.initial_state)
-			self.refresh_GUI(angle, iterations, initial)
+			self.refresh_GUI(angle, iterations, initial, )
 
 	def refresh_GUI(self, angle, iterations, initial):
 		'''
@@ -74,6 +74,8 @@ class Main_GUI:
 		self.initial_state_entry = Entry(self.frame, textvariable=initial)
 		self.initial_state_entry.pack(side=LEFT)
 		self.initial_state_entry.place(relx=0.13, rely=0.1)
+		self.popupMenuVar.set(str(self.actual_angle)) 
+
 
 	def create_GUI(self):
 		'''
