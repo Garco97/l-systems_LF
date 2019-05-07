@@ -17,9 +17,10 @@ class ResizingCanvas(Canvas):
 		Reescala el canvas cuando la pantalla se hace más grande o más pequeña
 		'''
 		wscale = float(event.width)/self.width
-		hscale = float(event.height)/self.height 
+		hscale = float(event.height)/self.height         
 		self.width = event.width
 		self.height = event.height
+		self.parent.initial_point = [self.width/2, self.height/2]
 		self.config(width=self.width, height=self.height)
 
 	def paint_lsystem(self, lsystem, event):
