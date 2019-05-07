@@ -18,7 +18,7 @@ class Main_GUI:
 		variable = str(self.variables_entry.get())
 		rule = str(self.rules_entry.get())
 		if len(variable) == 1:
-			self.rules[variable]=[rule,self.check.get()]
+			self.rules[variable]={'rule':rule,'forward':self.check.get()}
 			self.variables_entry.delete(0, len(variable))
 			self.rules_entry.delete(0,len(rule))
 			text = Label(self.mycanvas, text=variable+":"+rule,bg="white")
