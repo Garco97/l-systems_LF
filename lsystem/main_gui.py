@@ -40,11 +40,17 @@ class Main_GUI:
 				actual_lsystem.calculate()
 			self.mycanvas.paint_lsystem(actual_lsystem,event)
 	def repaint(self,event):
+		'''
+		Pinta de nuevo el l-system cargado con las actualizaciones de los entry
+		'''
 		if self.initial_point is not  None and event.char == "\r":
 			event.x,event.y = self.initial_point[0], self.initial_point[1]
 			self.calculate(event)
 
 	def is_not_empty(self):
+		'''
+		Comprueba si hay algún campo vacio
+		'''
 		if self.initial_state_entry.get() is  "" or self.iterations_entry.get() is "" or self.angulo_entry.get() is "" or self.line_size_entry.get() is "":
 			return False
 		else:

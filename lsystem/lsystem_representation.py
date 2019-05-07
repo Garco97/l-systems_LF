@@ -19,6 +19,9 @@ class lsystem():
 		return res
 
 	def take_forward_variables(self):
+		'''
+		Extrae las variables que hacen que se pinte de las reglas
+		'''
 		for i,j in self.rules.items():
 			if j["forward"] == 1:
 				self.forward_variables.add(i)
