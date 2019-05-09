@@ -11,7 +11,6 @@ class ResizingCanvas(Canvas):
 		self.width = self.winfo_reqwidth()
 		self.parent = parent
 
-
 	def on_resize(self,event):
 		'''
 		Reescala el canvas cuando la pantalla se hace más grande o más pequeña
@@ -27,7 +26,6 @@ class ResizingCanvas(Canvas):
 		'''
 		Una vez calculadas las iteraciones, se representa el l-system
 		'''
-
 		initial_point = [event.x,event.y]
 		for letter in lsystem.get_actual_state():
 			angle_rad = lsystem.actual_angle * math.pi / 180
@@ -38,13 +36,9 @@ class ResizingCanvas(Canvas):
 			elif letter in lsystem.variables:
 				destination_point = [initial_point[0] + lsystem.line_size * math.cos(angle_rad) , initial_point[1] + lsystem.line_size * math.sin(angle_rad)]
 				initial_point = destination_point
-			if letter == "+":
-				lsystem.add_angle(lsystem.angle)
-			elif letter == "-":
-				lsystem.add_angle(-lsystem.angle)
-			elif letter == "[":
-				lsystem.stack.append([initial_point,lsystem.actual_angle])
-			elif letter == "]":
-				initial_point, lsystem.actual_angle = lsystem.stack.pop()
+			if letter == "+":lsystem.add_angle(lsystem.angle)
+			elif letter == "-":lsystem.add_angle(-lsystem.angle)
+			elif letter == "[":lsystem.stack.append([initial_point,lsystem.actual_angle])
+			elif letter == "]":initial_point, lsystem.actual_angle = lsystem.stack.pop()
 
 

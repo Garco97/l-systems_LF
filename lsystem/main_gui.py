@@ -17,14 +17,20 @@ class Main_GUI:
 		'''
 		variable = str(self.variables_entry.get())
 		rule = str(self.rules_entry.get())
-		if len(variable) == 1:
-			self.rules[variable]={'rule':rule,'forward':self.check.get()}
-			self.variables_entry.delete(0, len(variable))
-			self.rules_entry.delete(0,len(rule))
-			text = Label(self.mycanvas, text=variable+":"+rule,bg="white")
-			text.pack(side=LEFT)
-			text.place(relx=0.85, rely=self.rule_counter)
-			self.rule_counter += 0.03
+		if len(variable) == 1:self.rule_representation(variable, rule)
+			
+
+	def rule_representation(self, variable, rule):
+		'''
+		Representa la regla en el canvas
+		'''
+		self.rules[variable]={'rule':rule,'forward':self.check.get()}
+		self.variables_entry.delete(0, len(variable))
+		self.rules_entry.delete(0,len(rule))
+		text = Label(self.mycanvas, text=variable+":"+rule,bg="white")
+		text.pack(side=LEFT)
+		text.place(relx=0.85, rely=self.rule_counter)
+		self.rule_counter += 0.03
 
 	def calculate(self,event):
 		'''
@@ -35,10 +41,11 @@ class Main_GUI:
 		self.actual_angle = int(self.popupMenuVar.get())
 		if self.is_not_empty():
 			actual_lsystem  = lsystem(self.rules, self.initial_state_entry.get(),
-										   self.iterations_entry.get(),float(self.angulo_entry.get()),int(self.line_size_entry.get()),self.actual_angle)
+										   self.iterations_entry.get(),float(self.angle_entry.get()),int(self.line_size_entry.get()),self.actual_angle)
 			for iteration in range(0,int(actual_lsystem.iterations)):
 				actual_lsystem.calculate()
 			self.mycanvas.paint_lsystem(actual_lsystem,event)
+
 	def repaint(self,event):
 		'''
 		Pinta de nuevo el l-system cargado con las actualizaciones de los entry
@@ -51,10 +58,10 @@ class Main_GUI:
 		'''
 		Comprueba si hay algún campo vacio
 		'''
-		if self.initial_state_entry.get() is  "" or self.iterations_entry.get() is "" or self.angulo_entry.get() is "" or self.line_size_entry.get() is "":
+		if self.initial_state_entry.get() is  "" or self.iterations_entry.get() is "" or self.angle_entry.get() is "" or self.line_size_entry.get() is "":
 			return False
-		else:
-			return True
+		else:return True
+
 	def lsystem_json(self):
 		'''
 		Carga el fichero JSON desde un filechooser
@@ -65,10 +72,7 @@ class Main_GUI:
 		if self.root.filename is not "": 
 			lsystem = get_lsystem(self.root.filename)
 			for variable, rule in lsystem.rules.items():
-			  	text = Label(self.mycanvas, text=variable+":"+rule["rule"],bg="white")
-			  	text.pack(side=LEFT)
-			  	text.place(relx=0.8, rely=self.rule_counter)
-			  	self.rule_counter += 0.03
+				self.rule_representation(variable, rule["rule"])
 			self.rules=lsystem.rules
 			self.actual_angle = lsystem.actual_angle
 			self.angle.set(lsystem.angle) 
@@ -136,13 +140,13 @@ class Main_GUI:
 		self.rules_entry = Entry(self.frame)
 		self.rules_entry.pack(side=LEFT)
 		self.rules_entry.place(relx=0.13, rely=0.5)
-		self.angulo_lbl = Label(self.frame, text="Angulo")
-		self.angulo_lbl.pack(side=LEFT)
-		self.angulo_lbl.place(relx=0.62, rely=0.3)
-		self.angulo_entry = Entry(self.frame,textvariable=self.angle)
-		self.angulo_entry.pack(side=LEFT)
-		self.angulo_entry.place(relx=0.735, rely=0.3)
-		self.angulo_entry.bind("<Key>", self.repaint)
+		self.angle_lbl = Label(self.frame, text="Angulo")
+		self.angle_lbl.pack(side=LEFT)
+		self.angle_lbl.place(relx=0.62, rely=0.3)
+		self.angle_entry = Entry(self.frame,textvariable=self.angle)
+		self.angle_entry.pack(side=LEFT)
+		self.angle_entry.place(relx=0.735, rely=0.3)
+		self.angle_entry.bind("<Key>", self.repaint)
 		size = StringVar()
 		size.set("4")
 		self.line_size_lbl = Label(self.frame, text="Tam. Linea")

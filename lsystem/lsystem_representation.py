@@ -23,8 +23,8 @@ class lsystem():
 		Extrae las variables que hacen que se pinte de las reglas
 		'''
 		for i,j in self.rules.items():
-			if j["forward"] == 1:
-				self.forward_variables.add(i)
+			if j["forward"] == 1:self.forward_variables.add(i)
+			
 	def take_variables(self):
 		'''
 		Extrae las variables de las reglas
@@ -51,8 +51,7 @@ class lsystem():
 					next_state += rule["rule"]
 					found = True
 					break
-			if not found:
-				next_state += variable
+			if not found:next_state += variable
 			found = False
 		self.set_actual_state(next_state)
 
