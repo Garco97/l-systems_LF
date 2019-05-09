@@ -1,3 +1,4 @@
+import math
 class lsystem():
 	def __init__(self, rules, initial_state, iterations, angle, line_size, starting_angle):
 		self.rules = rules
@@ -66,3 +67,22 @@ class lsystem():
 		Retorna el estado actual
 		'''
 		return self.actual_state
+
+	def paint_lsystem(self, canvas, event):
+		'''
+		Una vez calculadas las iteraciones, se representa el l-system
+		'''
+		initial_point = [event.x,event.y]
+		for letter in self.get_actual_state():
+			angle_rad = self.actual_angle * math.pi / 180
+			if letter in self.forward_variables:
+				destination_point = [initial_point[0] + self.line_size * math.cos(angle_rad) , initial_point[1] + self.line_size * math.sin(angle_rad)]
+				canvas.create_line(initial_point[0],initial_point[1],destination_point[0],destination_point[1],width=2)
+				initial_point = destination_point
+			elif letter in self.variables:
+				destination_point = [initial_point[0] + self.line_size * math.cos(angle_rad) , initial_point[1] + self.line_size * math.sin(angle_rad)]
+				initial_point = destination_point
+			if letter == "+":self.add_angle(self.angle)
+			elif letter == "-":self.add_angle(-self.angle)
+			elif letter == "[":self.stack.append([initial_point,self.actual_angle])
+			elif letter == "]":initial_point, self.actual_angle = self.stack.pop()

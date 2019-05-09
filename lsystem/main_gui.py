@@ -3,7 +3,8 @@ from tkinter import *
 from resizable_canvas import *
 from lsystem_representation import *
 from read_JSON import *
-class Main_GUI:
+
+class GUI:
 	def __init__(self):
 		self.rules = {}
 		self.rule_counter = 0.1
@@ -44,7 +45,7 @@ class Main_GUI:
 										   self.iterations_entry.get(),float(self.angle_entry.get()),int(self.line_size_entry.get()),self.actual_angle)
 			for iteration in range(0,int(actual_lsystem.iterations)):
 				actual_lsystem.calculate()
-			self.mycanvas.paint_lsystem(actual_lsystem,event)
+			actual_lsystem.paint_lsystem(self.mycanvas,event)
 
 	def repaint(self,event):
 		'''
@@ -161,4 +162,4 @@ class Main_GUI:
 		self.root.mainloop()
 
 if __name__ == '__main__':
-	Main_GUI()
+	GUI()
