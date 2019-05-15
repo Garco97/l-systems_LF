@@ -28,5 +28,5 @@ Cada vez que el l-sistema gira, se mueve tantos grados como el ángulo que indiq
 ### Linea 
 Tamaño que se le pone a cada representación de las variables, para poder representar así un mayor número de iteraciones en un espacio más reducido
 
-###Orientación
+### Orientación
 Lista con las orientaciones posibles, en grados
