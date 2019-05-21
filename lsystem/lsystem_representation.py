@@ -55,8 +55,6 @@ class lsystem():
 			if not found:next_state += variable
 			found = False
 		self.set_actual_state(next_state)
-		print("Iteración")
-		print(self.get_actual_state())
 
 	def set_actual_state(self,actual_state):
 		'''
@@ -88,4 +86,6 @@ class lsystem():
 			elif letter == "-":self.add_angle(-self.angle)
 			elif letter == "[":self.stack.append([initial_point,self.actual_angle])
 			elif letter == "]":initial_point, self.actual_angle = self.stack.pop()
+		print("Generación")
+		print(self.get_actual_state())
 			

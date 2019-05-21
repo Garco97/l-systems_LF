@@ -10,6 +10,7 @@ class GUI:
 		self.rule_counter = 0.1
 		self.actual_angle = 90
 		self.initial_point = None
+		self.labels=[]
 		self.create_GUI()
 		
 	def save_rule(self):
@@ -31,6 +32,7 @@ class GUI:
 		text = Label(self.mycanvas, text=variable+":"+rule,bg="white")
 		text.pack(side=LEFT)
 		text.place(relx=0.85, rely=self.rule_counter)
+		self.labels.append(text)
 		self.rule_counter += 0.03
 
 	def calculate(self,event):
@@ -38,6 +40,7 @@ class GUI:
 		 Se encarga de guardar el lsystem creado para poder representarlo despues
 		'''
 		self.mycanvas.delete("all")
+
 		self.initial_point=[event.x,event.y]
 		self.actual_angle = int(self.popupMenuVar.get())
 		if self.is_not_empty():
@@ -81,6 +84,14 @@ class GUI:
 			self.initial.set(lsystem.initial_state)
 			self.popupMenuVar.set(str(self.actual_angle)) 
 
+	def delete_lsystem(self):
+		self.rules = {}
+		self.rule_counter = 0.1
+		self.mycanvas.delete("all")
+		for label in self.labels:label.destroy()
+		self.angle.set("") 
+		self.iterations.set("")
+		self.initial.set("")
 	def create_GUI(self):
 		'''
 		Crea toda la interfaz gráfica
@@ -92,6 +103,9 @@ class GUI:
 		self.button_load_JSON = Button(self.root,text="Cargar JSON", command = self.lsystem_json)
 		self.button_load_JSON.pack(side=LEFT)
 		self.button_load_JSON.place(relx=0.1, rely=0.05)
+		self.delete_lsystem = Button(self.root,text="Eliminar L-sistema", command = self.delete_lsystem)
+		self.delete_lsystem.pack(side=LEFT)
+		self.delete_lsystem.place(relx=0.2, rely=0.05)
 		self.popupMenuVar = StringVar(self.root)
 		choices = { '0','90','180','270'}
 		self.popupMenuVar.set('0') 
@@ -157,7 +171,6 @@ class GUI:
 		self.line_size_entry.pack(side=LEFT)
 		self.line_size_entry.place(relx=0.755, rely=0.5)
 		self.line_size_entry.bind("<Key>", self.repaint)
-		self.mycanvas.addtag_all("all")
 		self.mycanvas.bind("<Button-1>", self.calculate)	
 		self.root.mainloop()
 
