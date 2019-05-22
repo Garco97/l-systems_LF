@@ -86,6 +86,6 @@ class lsystem():
 			elif letter == "-":self.add_angle(-self.angle)
 			elif letter == "[":self.stack.append([initial_point,self.actual_angle])
 			elif letter == "]":initial_point, self.actual_angle = self.stack.pop()
-		print("Generación")
+		print("\n\n\nPalabra generada de la última iteración")
 		print(self.get_actual_state())
 			
