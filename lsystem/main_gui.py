@@ -70,8 +70,7 @@ class GUI:
 		'''
 		Carga el fichero JSON desde un filechooser
 		'''
-		self.rules = {}
-		self.rule_counter = 0.1
+		self.delete_lsystem()
 		self.root.filename =  filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("json files","*.json"),("all files","*.*")))
 		if self.root.filename is not "": 
 			lsystem = get_lsystem(self.root.filename)
